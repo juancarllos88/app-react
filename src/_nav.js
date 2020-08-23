@@ -21,28 +21,7 @@ export default {
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
 
-    {
-      name: 'Usuário',
-      url: '/dashboard/usuario',
-      icon: 'icon-user',
-      attributes: { hidden: hiddenByPermission('ROLE_ADMIN') },
-      badge: {
-        variant: 'info',
-        text: 'OK',
-      },
-      children: [
-        {
-          name: 'Cadastro',
-          url: '/dashboard/usuario/form',
-          icon: 'icon-user-follow',
-        },
-        {
-          name: 'Listagem',
-          url: '/dashboard/usuario/list',
-          icon: 'icon-list',
-        },
-      ]
-    },
+    
 
     {
       name: 'Frete',
@@ -63,6 +42,29 @@ export default {
           name: 'Finalização',
           url: '/dashboard/frete/sfc',
           icon: 'icon-credit-card',
+        },
+      ]
+    },
+
+    {
+      name: 'Usuário',
+      url: '/dashboard/usuario',
+      icon: 'icon-user',
+      attributes: { hidden: hiddenByPermission('ROLE_ADMIN') },
+      badge: {
+        variant: 'info',
+        text: 'OK',
+      },
+      children: [
+        {
+          name: 'Cadastro',
+          url: '/dashboard/usuario/form',
+          icon: 'icon-user-follow',
+        },
+        {
+          name: 'Listagem',
+          url: '/dashboard/usuario/list',
+          icon: 'icon-list',
         },
       ]
     },

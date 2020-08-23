@@ -67,13 +67,13 @@ function Login({history}) {
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input
-                        type="text"
-                        placeholder="Username"
-                        autoComplete="username"
-                        onChange={event => setUsername(event.target.value)}
-                        value={username}
-                      />
+                    <Input
+                    type="text"
+                    placeholder="Username"
+                    autoComplete="username"
+                    onChange={event => setUsername(event.target.value)}
+                    value={username}
+                    />
                     </InputGroup>
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">

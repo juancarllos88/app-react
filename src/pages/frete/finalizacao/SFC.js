@@ -4,11 +4,13 @@ import ButtonSubmitReset from "../../../components/Form/ButtonSubmitReset";
 import AlertCustom from "../../../components/Form/AlertCustom";
 import {useHistory} from 'react-router-dom';
 
-import { Card, CardBody, CardFooter, CardHeader, Col, Row } from "reactstrap";
+import { Card, CardBody, CardFooter, CardHeader, Col, Row, Input } from "reactstrap";
 
 import { Form } from "@unform/web";
 import * as Yup from "yup";
+import MaskedInput from 'react-text-mask'
 
+import InputMask from 'react-input-mask';
 
 
 // import { Container } from './styles';
@@ -36,6 +38,12 @@ export default function SFC() {
   };
 
 
+ 
+  const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
+  const letter = /(?!.*[DFIOQU])[A-Z]/i;
+  const digit = /[0-9]/;
+  const mask = [firstLetter, digit, letter, " ", digit, letter, digit];
+
 
   return (
     <div className="animated fadeIn">
@@ -58,21 +66,37 @@ export default function SFC() {
                   onDismiss={onDismiss}
                 />
 
+               
+          <Input
+          type="text"
+          mask="9999 9999 9999 9999"
+          maskChar=" "
+          tag={InputMask}
+        />
+
+        
+                
+
                 <InputCustom
                   required={true}
                   label="Cartão"
                   name="cartao"
                   type="text"
                   placeholder="9999-9999-9999-9999"
+                  mask="9999 9999 9999 9999"
+                  maskChar=" "
+                  tag={InputMask}
                 />
 
                 <InputCustom
                   required={true}
                   label="Senha"
                   name="senha"
-                  type="text"
+                  type="password"
                   placeholder="9999"
                 />
+
+                
 
 
               </CardBody>

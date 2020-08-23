@@ -19,11 +19,11 @@ api.interceptors.request.use(async config => {
 
 api.interceptors.response.use(
   response => {
-    console.log("response-success", response);
+    console.tron.log("response-success", response);
     return response;
   },
   error => {
-    console.log("response-error", error.response);
+    console.tron.log("response-error", error.response);
     return Promise.reject(error);
   }
 );

@@ -20,6 +20,9 @@ import MoonLoader from "react-spinners/MoonLoader";
 
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory from 'react-bootstrap-table2-filter';
+import {headers,paginationData} from '../../pages/usuario/table/dadosTabela'
+
 
 export default function Listagem() {
   const [loading, setLoading] = useState(true);
@@ -35,9 +38,10 @@ export default function Listagem() {
   }, []);
 
   async function handleSubmit(dados, { reset }) {
+    console.tron.log('dados',dados);
     const login = formRef.current.getFieldValue("login");
     setLoading(true);
-    const response = await usuarioService.pesquisarComParametros(0,1000,login);
+    const response = await usuarioService.pesquisarComParametros(0, 1000, login);
     treatResponse(response);
   }
 
@@ -49,65 +53,6 @@ export default function Listagem() {
       setLoading(false);
     }, 500);
   }
-
-  const customTotal = (from, to, size) => (
-    <span className="react-bootstrap-table-pagination-total" style={{ marginLeft: "10px" }}>
-      <strong>{ from } - { to } de { size } Resultados </strong>
-    </span>
-  );
-
-
-  const options = {
-
-    paginationSize: 10,
-    pageStartIndex: 0,
-    firstPageText: 'First',
-    prePageText: 'Back',
-    nextPageText: 'Next',
-    lastPageText: 'Last',
-    nextPageTitle: 'First page',
-    prePageTitle: 'Pre page',
-    firstPageTitle: 'Next page',
-    lastPageTitle: 'Last page',
-    showTotal: true,
-    paginationTotalRenderer: customTotal,
-    disablePageTitle: true,
-    sizePerPageList: [{
-      text: '5', value: 5
-    },{
-      text: '10', value: 10
-    },{
-      text: '25', value: 25
-    }]
-  };
-
-  const headers = [
-    {
-      dataField: "id",
-      text: "Id",
-    },
-    {
-      dataField: "nome",
-      text: "Nome",
-    },
-    {
-      dataField: "email",
-      text: "Email",
-    },
-    {
-      dataField: "login",
-      text: "Login",
-    },
-    {
-      dataField: "status",
-      text: "Status",
-      align: "center",
-    },
-    {
-      dataField: "acao",
-      text: "Ações"
-    },
-  ];
 
   return (
     <LoadingOverlay
@@ -140,7 +85,18 @@ export default function Listagem() {
                   </FormGroup>
                 </Form>
 
-                <BootstrapTable keyField='id' data={rows} columns={headers} pagination={ paginationFactory(options) } />
+                <BootstrapTable 
+                  keyField='id' 
+                  data={rows} 
+                  columns={headers}
+                  pagination={paginationFactory(paginationData)}
+                  bordered={ false }
+                  filter={ filterFactory() }
+                  filterPosition="top"
+                  striped
+                  hover
+                  condensed
+                />
 
               </CardBody>
             </Card>
